@@ -1,0 +1,7 @@
+<view class="welcome_box">
+  <image class="person_img" src="../../images/avatar/4.png"></image>
+  <text class="index_title"><text class="red_font">Hello,</text> beyond</text>
+  <view class="bottom_btn" bindtap="onTap">
+    <text class="btn_text">开启小程序之旅</text>
+  </view>
+</view>
