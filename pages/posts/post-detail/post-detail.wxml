@@ -3,15 +3,16 @@
     <image class="music_control" src="/images/music/music-start.png"></image>
     <view class="person">
         <image class="person_img" src="{{postData.avatar}}"></image>
-        <text class="person_name">{{postData.headImgSrc}}</text>
+        <text class="person_name">{{postData.author}}</text>
         <text class="person_text">发表于</text>
         <text class="person_date">{{postData.dateTime}}</text>
     </view>
     <text class="article_title">{{postData.title}}</text>
     <veiw class="selection_btn">
         <view class="circle_img">
-            <image src="/images/icon/collection.png"></image>
-            <image class="share_img" src="/images/icon/share.png"></image>
+            <image wx:if="{{collected}}" catchtap="collectTap" src="/images/icon/collection.png"></image>
+            <image wx:else catchtap="collectTap" src="/images/icon/collection-anti.png"></image>
+            <image catchtap="shareTap" class="share_img" src="/images/icon/share.png"></image>
         </view>
         <view class="line"></view>
     </veiw>

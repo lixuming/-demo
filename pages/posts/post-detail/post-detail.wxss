@@ -36,6 +36,7 @@
 .person_text{
     color: #999;
     margin-left: 20rpx;
+    vertical-align: middle;
 }
 .person_date{
     margin-left: 30rpx;
