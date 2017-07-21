@@ -49,11 +49,49 @@ Page({
     postCollected = !postCollected;
     //将更新的数据传入到缓存对象当中
     postsCollected[postId] = postCollected;
-    //更新缓存（更新后台数据）
-    wx.setStorageSync('posts_Collected',postsCollected);
-    //更新绑定的前台数据，这便是数据单向绑定的不便之处
-    this.setData({
-      collected: postCollected
+//执行showToast方法，并将postCollected，postsCollected作为参数传入到函数当中
+    this.showToast(postCollected,postsCollected);
+  },
+
+  showToast: function(postCollected,postsCollected){
+    //因作用于产生变化，将this赋给一个变量
+    var that = this;
+    //执行showToast API,
+    wx.showToast({
+      title:postCollected?'关注成功':'取消关注',
+      mask:true,
+      success:function(res){
+        //console.log(res);
+        //更新缓存（更新后台数据）
+        wx.setStorageSync('posts_Collected',postsCollected);
+        //更新绑定的前台数据，这便是数据单向绑定的不便之处
+        that.setData({
+          collected: postCollected
+        });
+      }
+    })
+  },  // end of showToast 方法
+
+  showModal: function(a,b){
+    var that = this;
+    wx.showModal({
+      title:"文章收藏",
+      content: a?"收藏该文章":"取消收藏",
+      showCancel:true,
+      cancelText:"取消",
+      cancelColor:"#333",
+      confirmText:"确认",
+      confirmColor:"#405f80",
+      success:function(res){
+        if(res.confirm){
+          //更新缓存（更新后台数据）
+          wx.setStorageSync('posts_Collected',b);
+          //更新绑定的前台数据，这便是数据单向绑定的不便之处
+          that.setData({
+            collected: a
+          });
+        }
+      }
     })
   }
 });
