@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    isMusicStatus : false
   },
 
   /**
@@ -93,5 +93,88 @@ Page({
         }
       }
     })
+  },
+
+  shareTap: function(e){
+    var itemList = [
+      '分享给微信好友',
+      '分享到朋友圈',
+      '分享到微博',
+      '分享到QQ'
+    ];
+    wx.showActionSheet({
+      itemList:itemList,
+      itemColor:"#405f80",
+      success:function(res){
+        //res.cancel  点击取消按钮
+        //res.tapIndex  数组元素的序号，从0开始
+        wx.showModal({
+          title:"用户"+itemList[res.tapIndex],
+          content:"用户是否取消？"+res.cancel+"现在小程序没有分享功能，待更新"
+        })
+      }
+    })
+  },
+
+  onMusicTap: function(e){
+    var isMusicStatus = this.data.isMusicStatus;
+    var postData = this.data.postData;
+    if(isMusicStatus){
+      wx.pauseBackgroundAudio();
+      //this.data.isMusicStatus = false;
+      this.setData({
+        isMusicStatus: false
+      })
+    }else{
+      wx.playBackgroundAudio({
+        dataUrl:postData.music.url,
+        title:postData.music.title,
+        coverImgUrl:postData.music.coverImg
+      });
+      //this.data.isMusicStatus = true;
+      this.setData({
+        isMusicStatus: true
+      })
+    }
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

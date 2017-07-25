@@ -1,6 +1,6 @@
 <view class="out_box">
-    <image class="head_img" src="{{postData.headImgSrc}}"></image>
-    <image class="music_control" src="/images/music/music-start.png"></image>
+    <image class="head_img" src="{{isMusicStatus?postData.music.coverImg:postData.headImgSrc}}"></image>
+    <image catchtap="onMusicTap" class="music_control" src="{{isMusicStatus?'/images/music/music-stop.png':'/images/music/music-start.png'}}"></image>
     <view class="person">
         <image class="person_img" src="{{postData.avatar}}"></image>
         <text class="person_name">{{postData.author}}</text>
