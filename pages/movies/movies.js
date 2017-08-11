@@ -1,4 +1,4 @@
-// pages/welcome/welcome.js
+// pages/movies/movies.js
 Page({
 
   /**
@@ -8,27 +8,24 @@ Page({
   
   },
 
-  /*
-  * 页面的
-  * */
-  onTap: function (){
-    //wx.navigateTo({
-    //  url:"../posts/posts"
-    //});
-
-    //wx.redirectTo({
-    //  url:"../posts/posts"
-    //});
-    wx.switchTab({
-      url: '../posts/posts'
-    })
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    wx.request({
+      url: 'https://api.douban.com/v2/movie/top250',
+      data: {},
+      header: {
+        'Content-Type': 'application'
+      },
+      success: function(res) {
+        console.log(res)
+      },
+      fail:function(error){
+        console.log('数据加载失败');
+        console.log(error);
+      }
+    })
   },
 
   /**
@@ -49,14 +46,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+  
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+  
   },
 
   /**
@@ -79,4 +76,4 @@ Page({
   onShareAppMessage: function () {
   
   }
-});
+})

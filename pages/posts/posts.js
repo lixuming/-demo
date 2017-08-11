@@ -17,6 +17,20 @@ Page({
     })
   },
 
+  onSwiperTap : function(e){
+
+    /*
+    * target 和 currentTarget 的区别
+    * target指的是当前点击的组件
+    * currentTarget指的是时间捕捉的组件
+    * target 指的是image，currentTarget指的是swiper
+    * */
+    var postId = e.target.dataset.postid;
+    wx.navigateTo({
+      url:"post-detail/post-detail?id=" + postId
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

@@ -1,0 +1,8 @@
+<import src="../starsTemplate/stars-Template.wxml" />
+<template name="movieTemplate">
+    <veiw class="movie-container">
+        <image class="movie-img" src="/images/yourname.jpg"></image>
+        <text class="movie-title">你的名字</text>
+        <template is="startTemplate"></template>
+    </veiw>
+</template>

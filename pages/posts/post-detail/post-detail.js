@@ -1,4 +1,5 @@
 var postsData = require("../../../data/posts-data.js");
+var app = getApp();
 // pages/posts/post-detail/post-detail.js
 Page({
 
@@ -13,7 +14,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
+    var globalData = app.globalData;
     var postId = e.id;
+    this.data.currentPostId = postId;
     var postData = postsData.postList[postId];
     this.setData({
       postId : postId,
@@ -38,7 +41,39 @@ Page({
       //将数据再存入缓存中
       wx.setStorageSync('posts_Collected',postsCollected);
     }
+
+    if(app.globalData.g_isMusicStatus && app.globalData.g_correntMusicPostId === postId){
+      this.setData({
+        isMusicStatus: true
+      })
+    }
+    this.setMusicMonitor();
   },  //end of onLoad
+
+  //音乐播放的函数
+  setMusicMonitor: function(){
+    var that = this;
+    //音乐监听播放事件，使点击事件可以与调试工具同步
+    wx.onBackgroundAudioPlay(function(){
+      that.setData({
+        isMusicStatus : true
+      });
+      app.globalData.g_isMusicStatus = true;
+      //app.globalData.g_correntMusicPostId = that.data.currentPostId;
+      //console.log("当前Id : "+that.data.currentPostId);
+      //console.log(app.globalData.g_correntMusicPostId);
+
+    });
+    //音乐监听播放事件，使点击事件可以与调试工具同步
+    wx.onBackgroundAudioPause(function(){
+      that.setData({
+        isMusicStatus : false
+      });
+      //app.globalData.g_isMusicStatus = false;
+      //app.globalData.g_correntMusicPostId = null;
+      //console.log(app.globalData.g_correntMusicPostId);
+    });
+  },
 
   collectTap: function(e){
     var postId = this.data.postId;

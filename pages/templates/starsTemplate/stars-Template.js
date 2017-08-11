@@ -1,4 +1,4 @@
-// pages/welcome/welcome.js
+// pages/templates/starsTemplate/stars-Template.js
 Page({
 
   /**
@@ -6,22 +6,6 @@ Page({
    */
   data: {
   
-  },
-
-  /*
-  * 页面的
-  * */
-  onTap: function (){
-    //wx.navigateTo({
-    //  url:"../posts/posts"
-    //});
-
-    //wx.redirectTo({
-    //  url:"../posts/posts"
-    //});
-    wx.switchTab({
-      url: '../posts/posts'
-    })
   },
 
   /**
@@ -49,14 +33,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+  
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+  
   },
 
   /**
@@ -79,4 +63,4 @@ Page({
   onShareAppMessage: function () {
   
   }
-});
+})
